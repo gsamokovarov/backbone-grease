@@ -19,11 +19,11 @@
   * one "_" per chained method).
   */
   var greaseMixin = _(_).chain().methods().reduce(function(memo, methodName) {
-      if (methodName == 'chain') return memo; // No point in making a "chain_"
-      memo[methodName + '_'] = function() {
-          return _(_[methodName].apply(this, arguments));
-      };
-      return memo;
+      if (methodName == 'chain') return memo; // No point in making a "chain_"
+      memo[methodName + '_'] = function() {
+          return _(_[methodName].apply(this, arguments));
+      };
+      return memo;
   }, {}).value();
   _.mixin(greaseMixin);
 
@@ -69,18 +69,18 @@
   // Inline the custom methods pairs.
   _.extend(Backbone.Collection.prototype, {
     where_: function(attrs, first) {
-      if (_.isEmpty(attrs)) return _(first ? void 0 : []);
-      return this[first ? 'find_' : 'filter_'](function(model) {
-        for (var key in attrs) {
-          if (attrs[key] !== model.get(key)) return false;
-        }
-        return true;
-      });
-    },
+      if (_.isEmpty(attrs)) return _(first ? void 0 : []);
+      return this[first ? 'find_' : 'filter_'](function(model) {
+        for (var key in attrs) {
+          if (attrs[key] !== model.get(key)) return false;
+        }
+        return true;
+      });
+    },
 
-    findWhere_: function(attrs) {
-      return this.where_(attrs, true);
-    },
+    findWhere_: function(attrs) {
+      return this.where_(attrs, true);
+    },
 
     pluck_: function(attr) {
       return _.invoke_(this.models, 'get', attr);
