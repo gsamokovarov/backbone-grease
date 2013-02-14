@@ -1,0 +1,38 @@
+{
+  "name": "backbone-grease",
+  "description": "Easier Backbone collection underscore methods chaining.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/genadi/backbone-grease",
+  "author": {
+    "name": "Genadi Samokovarov",
+    "email": "gsamokovarov@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/genadi/backbone-grease.git"
+  },
+  "bugs": {
+    "url": "https://github.com/genadi/backbone-grease/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/genadi/backbone-grease/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-qunit": "0.1.1rc6",
+    "grunt": "0.4.0rc7"
+  },
+  "keywords": [
+    "backbone",
+    "plugin"
+  ]
+}
