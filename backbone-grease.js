@@ -40,11 +40,11 @@
 
   // Attach the reguler methods pairs.
   var methods = ['forEach_', 'each_', 'map_', 'collect_', 'reduce_', 'foldl_',
-    'inject_', 'reduceRight_', 'foldr_', 'find_', 'detect_', 'filter_', 'select_',
-    'reject_', 'every_', 'all_', 'some_', 'any_', 'include_', 'contains_', 'invoke_',
-    'max_', 'min_', 'toArray_', 'size_', 'first_', 'head_', 'take_', 'initial_', 'rest_',
-    'tail_', 'drop_', 'last_', 'without_', 'indexOf_', 'shuffle_', 'lastIndexOf_',
-    'isEmpty_'];
+    'inject_', 'reduceRight_', 'foldr_', 'find_', 'detect_', 'filter_',
+    'select_', 'reject_', 'every_', 'all_', 'some_', 'any_', 'include_',
+    'contains_', 'invoke_', 'max_', 'min_', 'toArray_', 'size_', 'first_',
+    'head_', 'take_', 'initial_', 'rest_', 'tail_', 'drop_', 'last_',
+    'without_', 'indexOf_', 'shuffle_', 'lastIndexOf_', 'isEmpty_'];
 
   _.each(methods, function(method) {
     Backbone.Collection.prototype[method] = function() {
