@@ -5,6 +5,9 @@
 
 (function(Backbone) {
 
+  // Borrow the Array#slice method.
+  var slice = Array.prototype.slice;
+
   /**
   * Underscore Grease
   *
