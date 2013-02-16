@@ -1,6 +1,6 @@
 {
   "name": "backbone-grease",
-  "description": "Easier Backbone collection underscore methods chaining.",
+  "description": "Slicker chaining for Backbone's collection Underscore methods.",
   "version": "0.1.0",
   "homepage": "https://github.com/genadi/backbone-grease",
   "author": {
