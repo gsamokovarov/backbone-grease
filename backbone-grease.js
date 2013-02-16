@@ -69,21 +69,15 @@
   // Inline the custom methods pairs.
   _.extend(Backbone.Collection.prototype, {
     where_: function(attrs, first) {
-      if (_.isEmpty(attrs)) return _(first ? void 0 : []);
-      return this[first ? 'find_' : 'filter_'](function(model) {
-        for (var key in attrs) {
-          if (attrs[key] !== model.get(key)) return false;
-        }
-        return true;
-      });
+      return _(this.where(attrs, first));
     },
 
     findWhere_: function(attrs) {
-      return this.where_(attrs, true);
+      return _(this.findWhere(attrs));
     },
 
     pluck_: function(attr) {
-      return _.invoke_(this.models, 'get', attr);
+      return _(this.pluck(attr));
     }
   });
 
