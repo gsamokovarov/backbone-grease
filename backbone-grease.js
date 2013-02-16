@@ -69,19 +69,13 @@
     };
   });
 
-  // Inline the custom methods pairs.
-  _.extend(Backbone.Collection.prototype, {
-    where_: function(attrs, first) {
-      return _(this.where(attrs, first));
-    },
+  // Attach the custom methods pairs.
+  var customMethods = ['where_', 'findWhere_', 'pluck_'];
 
-    findWhere_: function(attrs) {
-      return _(this.findWhere(attrs));
-    },
-
-    pluck_: function(attr) {
-      return _(this.pluck(attr));
-    }
+  _.each(customMethods, function(method) {
+    Backbone.Collection.prototype[method] = function() {
+      return _(this[method.slice(0, -1)].apply(this, arguments));
+    };
   });
 
 }).call(this, Backbone);
