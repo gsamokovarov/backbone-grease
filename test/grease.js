@@ -22,6 +22,21 @@ $(document).ready(function() {
     [4, 0]);
   });
 
+  test('attribute underscore grease methods', 4, function() {
+    new Backbone.Collection([{x: 1}, {x: 2}])
+      .groupBy_('x')
+      .tap(function(grouped) {
+        strictEqual(_.keys(grouped).length, 2);
+        strictEqual(grouped[1][0].get('x'), 1);
+        strictEqual(grouped[2][0].get('x'), 2);
+      });
+
+    deepEqual(new Backbone.Collection([{x: 3}, {x: 1}, {x: 2}])
+      .sortBy_('x')
+      .map(function(model) { return model.get('x'); }),
+    [1, 2, 3]);
+  });
+
   test('custom underscore grease methods', 3, function() {
     deepEqual(col
       .where_({even: true})
