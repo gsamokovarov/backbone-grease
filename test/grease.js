@@ -15,11 +15,18 @@ $(document).ready(function() {
     }
   }));
 
-  test("Underscore Grease methods", 1, function() {
+  test("regular underscore grease methods", 1, function() {
     deepEqual(col
       .filter_(function(o) { return o.id % 2 === 0; })
       .map(function(o) { return o.id * 2; }),
     [4, 0]);
+  });
+
+  test("custom underscore grease methods", 1, function() {
+    deepEqual(col
+      .where_(function(o) { return o.id % 2 === 0; })
+      .map(function(o) { return o.id * 2; }),
+  [4, 0]);
   });
 
 });
