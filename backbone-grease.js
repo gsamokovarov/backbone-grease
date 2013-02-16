@@ -36,7 +36,7 @@
   //    delegated to Underscore.
   // 2. Methods iteratively operating on individual model attributes. Those are
   //    also delegated to Underscore.
-  // 3. Methods in the vein of 2. that are not simple or commoun enough to
+  // 3. Methods in the vein of 2. that are not simple or common enough to
   //    easily generalize. Those are inlined right into the collection.
   //
   // We are going to handle each of those separately.
