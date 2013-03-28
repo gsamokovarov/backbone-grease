@@ -15,14 +15,24 @@ $(document).ready(function() {
     }
   }));
 
-  test('regular underscore grease methods', 1, function() {
+  test('regular model underscore grease methods', function() {
+    col.at(3)
+      .keys_()
+      .tap(function(keys) {
+        ok(_.include(keys, 'id'));
+        ok(_.include(keys, 'label'));
+        ok(_.include(keys, 'even'));
+      });
+  });
+
+  test('regular collection underscore grease methods', 1, function() {
     deepEqual(col
       .filter_(function(o) { return o.id % 2 === 0; })
       .map(function(o) { return o.id * 2; }),
     [4, 0]);
   });
 
-  test('attribute underscore grease methods', 4, function() {
+  test('attribute collection underscore grease methods', 4, function() {
     new Backbone.Collection([{x: 1}, {x: 2}])
       .groupBy_('x')
       .tap(function(grouped) {
@@ -37,7 +47,7 @@ $(document).ready(function() {
     [1, 2, 3]);
   });
 
-  test('custom underscore grease methods', 3, function() {
+  test('custom collection underscore grease methods', 3, function() {
     deepEqual(col
       .where_({even: true})
       .map(function(o) { return o.id * 2; }),

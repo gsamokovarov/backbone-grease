@@ -37,7 +37,7 @@
   _.each(modelMethods, function(method) {
     Backbone.Model.prototype[method] = function() {
       var args = slice.call(arguments);
-      args.unshift(this.models);
+      args.unshift(this.attributes);
       return _[method].apply(_, args);
     };
   });
