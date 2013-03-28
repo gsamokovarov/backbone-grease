@@ -30,6 +30,18 @@
   }, {}).value();
   _.mixin(greaseMixin);
 
+  // As of Backbone 1.0.0, `Backbone.Model` has underscore methods too.
+  var modelMethods = ['keys_', 'values_', 'pairs_', 'invert_', 'pick_',
+    'omit_'];
+
+  _.each(modelMethods, function(method) {
+    Backbone.Model.prototype[method] = function() {
+      var args = slice.call(arguments);
+      args.unshift(this.models);
+      return _[method].apply(_, args);
+    };
+  });
+
   // There are 3 kinds of Underscore methods in the Backbone collection.
   //
   // 1. Methods simply operating on collection's models array. Those are
@@ -41,15 +53,15 @@
   //
   // We are going to handle each of those separately.
 
-  // Attach the reguler methods pairs.
-  var methods = ['forEach_', 'each_', 'map_', 'collect_', 'reduce_', 'foldl_',
-    'inject_', 'reduceRight_', 'foldr_', 'find_', 'detect_', 'filter_',
-    'select_', 'reject_', 'every_', 'all_', 'some_', 'any_', 'include_',
-    'contains_', 'invoke_', 'max_', 'min_', 'toArray_', 'size_', 'first_',
-    'head_', 'take_', 'initial_', 'rest_', 'tail_', 'drop_', 'last_',
+  // Attach the regular methods pairs.
+  var collectionMethods = ['forEach_', 'each_', 'map_', 'collect_', 'reduce_',
+    'foldl_', 'inject_', 'reduceRight_', 'foldr_', 'find_', 'detect_',
+    'filter_', 'select_', 'reject_', 'every_', 'all_', 'some_', 'any_',
+    'include_', 'contains_', 'invoke_', 'max_', 'min_', 'toArray_', 'size_',
+    'first_', 'head_', 'take_', 'initial_', 'rest_', 'tail_', 'drop_', 'last_',
     'without_', 'indexOf_', 'shuffle_', 'lastIndexOf_', 'isEmpty_'];
 
-  _.each(methods, function(method) {
+  _.each(collectionMethods, function(method) {
     Backbone.Collection.prototype[method] = function() {
       var args = slice.call(arguments);
       args.unshift(this.models);
@@ -58,9 +70,9 @@
   });
 
   // Attach the attribute methods pairs..
-  var attributeMethods = ['groupBy_', 'countBy_', 'sortBy_'];
+  var collectionAttributeMethods = ['groupBy_', 'countBy_', 'sortBy_'];
 
-  _.each(attributeMethods, function(method) {
+  _.each(collectionAttributeMethods, function(method) {
     Backbone.Collection.prototype[method] = function(value, context) {
       var iterator = _.isFunction(value) ? value : function(model) {
         return model.get(value);
@@ -70,9 +82,9 @@
   });
 
   // Attach the custom methods pairs.
-  var customMethods = ['where_', 'findWhere_', 'pluck_'];
+  var collectionCustomMethods = ['where_', 'findWhere_', 'pluck_'];
 
-  _.each(customMethods, function(method) {
+  _.each(collectionCustomMethods, function(method) {
     Backbone.Collection.prototype[method] = function() {
       return _(this[method.slice(0, -1)].apply(this, arguments));
     };
