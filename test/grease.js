@@ -2,10 +2,8 @@ $(document).ready(function() {
 
   var col;
 
-  module('Backbone.Grease', _.extend(new Environment, {
+  module('Backbone.Grease', {
     setup: function() {
-      Environment.prototype.setup.apply(this, arguments);
-
       col = new Backbone.Collection([
         new Backbone.Model({id: 3, label: 'a'}),
         new Backbone.Model({id: 2, label: 'b', even: true}),
@@ -13,7 +11,7 @@ $(document).ready(function() {
         new Backbone.Model({id: 0, label: 'd', even: true})
       ]);
     }
-  }));
+  });
 
   test('regular model underscore grease methods', function() {
     col.at(3)

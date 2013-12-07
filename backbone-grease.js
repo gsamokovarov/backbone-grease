@@ -31,8 +31,7 @@
   _.mixin(greaseMixin);
 
   // As of Backbone 1.0.0, `Backbone.Model` has underscore methods too.
-  var modelMethods = ['keys_', 'values_', 'pairs_', 'invert_', 'pick_',
-    'omit_'];
+  var modelMethods = ['keys_', 'values_', 'pairs_', 'invert_', 'pick_', 'omit_'];
 
   _.each(modelMethods, function(method) {
     Backbone.Model.prototype[method] = function() {
@@ -53,13 +52,14 @@
   //
   // We are going to handle each of those separately.
 
-  // Attach the regular methods pairs.
+
   var collectionMethods = ['forEach_', 'each_', 'map_', 'collect_', 'reduce_',
     'foldl_', 'inject_', 'reduceRight_', 'foldr_', 'find_', 'detect_',
     'filter_', 'select_', 'reject_', 'every_', 'all_', 'some_', 'any_',
     'include_', 'contains_', 'invoke_', 'max_', 'min_', 'toArray_', 'size_',
-    'first_', 'head_', 'take_', 'initial_', 'rest_', 'tail_', 'drop_', 'last_',
-    'without_', 'indexOf_', 'shuffle_', 'lastIndexOf_', 'isEmpty_'];
+    'first_', 'head_', 'take_', 'initial_', 'rest_', 'tail', 'drop', 'last',
+    'without', 'difference', 'indexOf', 'shuffle', 'lastIndexOf_', 'isEmpty_',
+    'sample_'];
 
   _.each(collectionMethods, function(method) {
     Backbone.Collection.prototype[method] = function() {
@@ -70,7 +70,8 @@
   });
 
   // Attach the attribute methods pairs..
-  var collectionAttributeMethods = ['groupBy_', 'countBy_', 'sortBy_'];
+  var collectionAttributeMethods = ['groupBy_', 'countBy_', 'sortBy_',
+    '_index_by'];
 
   _.each(collectionAttributeMethods, function(method) {
     Backbone.Collection.prototype[method] = function(value, context) {
